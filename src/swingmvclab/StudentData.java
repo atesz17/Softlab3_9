@@ -80,4 +80,10 @@ public class StudentData extends AbstractTableModel {
 		default:	student.setGrade((Integer)value);	break;
 		}
 	}
+	
+	public void addStudent(String name, String neptun)	{
+		
+		students.add(new Student(name, neptun, false, 0));
+		fireTableRowsInserted(students.size() - 1, students.size() - 1);
+	}
 }

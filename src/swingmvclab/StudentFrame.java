@@ -2,6 +2,8 @@ package swingmvclab;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.FileInputStream;
@@ -10,9 +12,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /*
  * A megjelenítendõ ablakunk osztálya.
@@ -36,6 +42,9 @@ public class StudentFrame extends JFrame {
         
         // ...
         
+        /*
+         * TABLE
+         */
         String[] columnNames = {"Name", "Neptun", "Signature", "Grade"};
         JTable table = new JTable(data);
         add(BorderLayout.CENTER, table);
@@ -44,6 +53,29 @@ public class StudentFrame extends JFrame {
         add(scrollPane);
         table.setFillsViewportHeight(true);
         table.setVisible(true);
+        
+        /*
+         * PANEL
+         */
+        JPanel panel = new JPanel();
+        add(BorderLayout.SOUTH, panel);
+        JTextField nameField = new JTextField(20);
+        JTextField neptunField = new JTextField(6);
+        panel.add(new JLabel("Név"));
+        panel.add(nameField);
+        panel.add(new JLabel("Neptun"));
+        panel.add(neptunField);
+        JButton addButton = new JButton();
+        addButton.setText("Felvesz");
+        panel.add(addButton);
+        addButton.addActionListener(new ActionListener() {
+        	
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				data.addStudent(nameField.getText(), neptunField.getText());
+			}
+        });
     }
 
     /*
