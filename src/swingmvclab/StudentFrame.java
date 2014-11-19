@@ -9,7 +9,10 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
+
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 /*
  * A megjelenítendõ ablakunk osztálya.
@@ -32,6 +35,15 @@ public class StudentFrame extends JFrame {
         this.setLayout(new BorderLayout());
         
         // ...
+        
+        String[] columnNames = {"Name", "Neptun", "Signature", "Grade"};
+        JTable table = new JTable(data);
+        add(BorderLayout.CENTER, table);
+        JScrollPane scrollPane = new JScrollPane(table);
+        // Ez a sor kell, hogy lathato legyen a gorgethto tablazat, enelkul a tablazat sem jelenik meg
+        add(scrollPane);
+        table.setFillsViewportHeight(true);
+        table.setVisible(true);
     }
 
     /*
